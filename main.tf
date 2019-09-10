@@ -229,7 +229,6 @@ resource "google_pubsub_subscription" "spinnaker_pubsub_subscription" {
   expiration_policy {
     ttl = "2592000s"
   }
- depends_on = ["google_pubsub_topic.spinnaker_cloud-builds"]
 }
 
 resource "google_pubsub_subscription_iam_binding" "spinnaker_pubsub_iam_read" {
@@ -238,7 +237,6 @@ resource "google_pubsub_subscription_iam_binding" "spinnaker_pubsub_iam_read" {
   members      = [
     "serviceAccount:${google_service_account.spinnaker-store-sa.email}",
   ]
- depends_on = ["google_pubsub_topic.spinnaker_cloud-builds"]
 }
 
 resource "kubernetes_namespace" "prod" {
